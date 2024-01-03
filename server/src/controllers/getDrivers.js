@@ -49,21 +49,22 @@ const testDrivers = [
 module.exports = async (req, res) => {
   let name = null;
   let dataToSend = {};
-  if(req.query)
-   ({ name } = req.query);
+  if (req.query) ({ name } = req.query);
   try {
     const { data } = await axios.get("http://localhost:5000/drivers"); //pido a la api los drivers
-    if (name){ //Si viene filtro por query
+    if (name) {
+      //Si viene filtro por query
       dataToSend = data.filter((driver) =>
         driver.driverRef.toLowerCase().includes(name.toLowerCase())
       );
       const driversFromDB = await getDriversFromDB(name);
-      if (driversFromDB !== undefined){
+      if (driversFromDB !== undefined) {
         dataToSend = dataToSend.concat(driversFromDB);
       }
-    }
-    else dataToSend = data; //Sino vienen datos por query cargo todos
-    
+      dataToSend = dataToSend.slice(0, 15);
+      if (dataToSend.length === 0) throw new Error("No driver found");
+    } else dataToSend = data; //Sino vienen datos por query cargo todos
+
     //checkeo que todos los drivers tengan foto sino cargo por default.
     for (let i = 0; i < dataToSend.length; i++) {
       if (!dataToSend[i].image.hasOwnProperty("url")) {
@@ -73,7 +74,9 @@ module.exports = async (req, res) => {
     //devuelvo los drivers.
     return res.status(200).json(dataToSend);
   } catch (error) {
-    // console.log("Api error:",error.message);
+    if(error.message==="No driver found")
+      return res.status(404).json({error: error.message})
+
     return res.status(500).json({ error: error.message });
   }
 };
