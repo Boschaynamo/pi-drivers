@@ -47,8 +47,10 @@ const testDrivers = [
 ];
 
 module.exports = async (req, res) => {
-  const { name } = req.query;
+  let name = null;
   let dataToSend = {};
+  if(req.query)
+   ({ name } = req.query);
   try {
     const { data } = await axios.get("http://localhost:5000/drivers"); //pido a la api los drivers
     if (name){ //Si viene filtro por query
