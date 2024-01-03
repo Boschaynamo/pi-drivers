@@ -1,5 +1,6 @@
 const axios = require("axios");
 require("dotenv").config();
+const getDriversFromDB = require("./helpers/getDriversFromDB");
 const testDrivers = [
   {
     id: 1,
@@ -46,18 +47,29 @@ const testDrivers = [
 ];
 
 module.exports = async (req, res) => {
-  //pido a la api los drivers
+  const { name } = req.query;
+  let dataToSend = {};
   try {
-    const { data } = await axios.get("http://localhost:5000/drivers");
-
-    //checkeo que todos los drivers tengan foto sino cargo por default.
-    //devuelvo drivers.
-    for (let i = 0; i < data.length; i++) {
-      if (!data[i].image.hasOwnProperty("url")) {
-        data[i].image.url = process.env.DEFAULT_DRIVER_IMAGE;
+    const { data } = await axios.get("http://localhost:5000/drivers"); //pido a la api los drivers
+    if (name){ //Si viene filtro por query
+      dataToSend = data.filter((driver) =>
+        driver.driverRef.toLowerCase().includes(name.toLowerCase())
+      );
+      const driversFromDB = await getDriversFromDB(name);
+      if (driversFromDB !== undefined){
+        dataToSend = dataToSend.concat(driversFromDB);
       }
     }
-    return res.status(200).json(data);
+    else dataToSend = data; //Sino vienen datos por query cargo todos
+    
+    //checkeo que todos los drivers tengan foto sino cargo por default.
+    for (let i = 0; i < dataToSend.length; i++) {
+      if (!dataToSend[i].image.hasOwnProperty("url")) {
+        dataToSend[i].image.url = process.env.DEFAULT_DRIVER_IMAGE;
+      }
+    }
+    //devuelvo los drivers.
+    return res.status(200).json(dataToSend);
   } catch (error) {
     // console.log("Api error:",error.message);
     return res.status(500).json({ error: error.message });
