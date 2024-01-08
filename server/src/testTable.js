@@ -19,27 +19,27 @@ module.exports = async () => {
     nacionalidad: "Argentina",
     fechadenacimiento: "1998-01-20 08:30:00",
   });
-  const mercedes = await Team.create({
-    nombre: "Mercedes",
-    id: 1,
-  });
-  await Team.create({
-    nombre: "Mercedes2",
-    id: 2,
-  });
-  const mercedes3 = await Team.create({
-    nombre: "Mercedes3",
-    id: 3,
-  });
-  await Team.create({
-    nombre: "Mercedes4",
-    id: 4,
-  });
-  const mercedes5 = await Team.create({
-    nombre: "Mercedes5",
-    id: 5,
-  });
-  namo.addTeam(mercedes);
-  namo.addTeam(mercedes5);
-  namo2.addTeam(mercedes3);
+  // const mercedes = await Team.create({
+  //   nombre: "Mercedes",
+  //   id: 1,
+  // });
+  // await Team.create({
+  //   nombre: "Mercedes2",
+  //   id: 2,
+  // });
+  // const mercedes3 = await Team.create({
+  //   nombre: "Mercedes3",
+  //   id: 3,
+  // });
+  // await Team.create({
+  //   nombre: "Mercedes4",
+  //   id: 4,
+  // });
+  // const mercedes5 = await Team.create({
+  //   nombre: "Mercedes5",
+  //   id: 5,
+  // });
+  // namo.addTeam(mercedes);
+  // namo.addTeam(mercedes5);
+  // namo2.addTeam(mercedes3);
 };
