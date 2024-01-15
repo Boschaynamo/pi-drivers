@@ -1,3 +1,14 @@
 .container{
     color:red;
+    background: url('https://i.pinimg.com/564x/05/ae/1e/05ae1e4e8c88bf530f3d9905a81f49f5.jpg') no-repeat center;
+    height: 800px;
+    position:relative;
+}
+
+.button{
+    position:absolute;
+    top:90%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
 }

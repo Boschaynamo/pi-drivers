@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Landing = () => {
   return <div className={style.container}>
-    <NavLink to='/home'> <button>Go To Home</button> </NavLink>
+    <NavLink to='/home'> <button className={style.button}>Go To Home</button> </NavLink>
     </div>;
 };
 

@@ -1,0 +1,10 @@
+.container{
+    background-color: red;
+    padding: 10px;
+}
+
+
+.filtersContainer{
+    display: flex;
+    justify-content: space-evenly;
+}
