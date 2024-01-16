@@ -38,7 +38,7 @@ function App() {
       {location.pathname === "/home" ? <Nav clickSearch={clickSearch} /> : null}
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home drivers={drivers} />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </>
   );

@@ -10,8 +10,7 @@ import Filter from "../Filter/Filter.jsx"
 //   backgroundTheme.play()
 // }
 
-const Home = ({ drivers}) => {
-  console.log(drivers);
+const Home = () => {
   // const backgroundTheme = new Audio(sound);
   // backgroundTheme.volume = 0.15;
   useEffect(() => {
@@ -21,11 +20,11 @@ const Home = ({ drivers}) => {
   return (
     <div className={style.container}>
       <div className={style.filtersContainer}>
-        <Filter id='hello2' options={['hello','hello2']}/>
-        <Filter id='hello2' options={['hello','hello2']}/>
-        <Filter id='hello2' options={['hello','hello2']}/>
+        <Filter id='team' options={['Mercedes','Ferrari']}/>
+        <Filter id='origin' options={['API','BD']}/>
+        <Filter id='order' options={['ASC','DSC']}/>
       </div>
-      <Cards drivers={drivers} />
+      <Cards />
     </div>
   );
 };
