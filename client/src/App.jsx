@@ -8,20 +8,21 @@ import "./App.css";
 
 function App() {
   let location = useLocation();
-
-  const [allDrivers, setAllDrivers] = useState([]);
-  const [drivers, setDrivers] = useState([]);
-  async function retrieveDrivers() {
-    try {
-      const { data } = await axios.get("http://localhost:3001/drivers");
-      console.log(data);
-      setAllDrivers(data);
-      setDrivers(data);
-      return data;
-    } catch (err) {
-      window.alert(err.message);
-    }
-  }
+  
+  
+  // const [allDrivers, setAllDrivers] = useState([]);
+  // const [drivers, setDrivers] = useState([]);
+  // async function retrieveDrivers() {
+  //   try {
+  //     const { data } = await axios.get("http://localhost:3001/drivers");
+  //     console.log(data);
+  //     setAllDrivers(data);
+  //     setDrivers(data);
+  //     return data;
+  //   } catch (err) {
+  //     window.alert(err.message);
+  //   }
+  // }
   
   
 //No use because of redux
@@ -31,7 +32,6 @@ function App() {
   // }
 
   useEffect(() => {
-    retrieveDrivers()
   }, []);
   return (
     <>

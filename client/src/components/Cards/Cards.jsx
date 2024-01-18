@@ -24,7 +24,34 @@ const Cards = () => {
       }
     });
   else drivers = driversBeforeOrder;
+
+  switch(filter.origin){
+    case 'API':
+      drivers = drivers.filter(driver=> !driver.hasOwnProperty('fromdatabase')
+);
+      break;
+    case 'BD':
+      drivers = drivers.filter(driver=>driver.hasOwnProperty('fromdatabase'));
+      break;
+    default:
+      break;
+  }
+    
+
+
   const dispatch = useDispatch();
+
+  // const [teams, setTeams] = useState([]);
+
+  // const retrieveTeams = async () => {
+  //   try {
+  //     const {data} = await axios.get('http://localhost:3001/teams');
+  //     console.log(data);
+  //     setTeams(data);
+  //   } catch (err) {
+  //     setTeams(["No teams loaded"]);
+  //   }
+  // };
 
   const cards = drivers.map((driver) => (
     <Card
@@ -37,6 +64,7 @@ const Cards = () => {
 
   useEffect(() => {
     dispatch(getDrivers());
+    
   }, []);
 
   return <div className={style.cardsContainer}>{cards}</div>;
