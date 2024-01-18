@@ -21,8 +21,9 @@ const Home = () => {
     <div className={style.container}>
       <div className={style.filtersContainer}>
         <Filter id='team' options={['Mercedes','Ferrari']}/>
-        <Filter id='origin' options={['API','BD']}/>
-        <Filter id='order' options={['ASC','DSC']}/>
+        <Filter id='origin' options={['API','BD','-']}/>
+        <Filter id='order' options={['ASC','DSC','-']}/>
+        <Filter id='dob' options={['ASC','DSC','-']}/>
       </div>
       <Cards />
     </div>

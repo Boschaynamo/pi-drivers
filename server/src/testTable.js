@@ -8,7 +8,7 @@ module.exports = async () => {
     descripcion: "El mejor piloto de Formula 1 de la historia",
     imagen: "defaultimagenbro",
     nacionalidad: "Argentina",
-    fechadenacimiento: "1998-01-20 08:30:00",
+    fechadenacimiento: "1998-01-20",
   });
   const namo2 = await Driver.create({
     name: "Namito2",
@@ -17,7 +17,7 @@ module.exports = async () => {
     descripcion: "El mejor piloto de Formula 1 de la historia2",
     imagen: "defaultimagenbro2",
     nacionalidad: "Argentina",
-    fechadenacimiento: "1998-01-20 08:30:00",
+    fechadenacimiento: "1998-01-20",
   });
   // const mercedes = await Team.create({
   //   nombre: "Mercedes",

@@ -33,3 +33,21 @@ export const filterDrivers = (filtroData) => {
     payload: filtroData,
   };
 };
+
+export const getDriversByName = (name) => {
+  const endpoint = "http://localhost:3001/drivers";
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(endpoint,{params:{name}});
+      return dispatch({
+        type: 'SEARCH_BY_NAME',
+        payload: data,
+      });
+    } catch (err) {
+      return dispatch({
+        type: 'SEARCH_BY_NAME',
+        payload: err.response.data,
+      });
+    }
+  };
+};

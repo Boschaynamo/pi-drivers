@@ -24,18 +24,18 @@ function App() {
   }
   
   
-
-  const clickSearch = (text) =>{
-    const filteredDrivers = allDrivers.filter((driver)=>driver.name.forename.toLowerCase().includes(text.toLowerCase()));
-    setDrivers(filteredDrivers)
-  }
+//No use because of redux
+  // const clickSearch = (text) =>{
+  //   const filteredDrivers = allDrivers.filter((driver)=>driver.name.forename.toLowerCase().includes(text.toLowerCase()));
+  //   setDrivers(filteredDrivers)
+  // }
 
   useEffect(() => {
     retrieveDrivers()
   }, []);
   return (
     <>
-      {location.pathname === "/home" ? <Nav clickSearch={clickSearch} /> : null}
+      {location.pathname === "/home" ? <Nav /> : null}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
