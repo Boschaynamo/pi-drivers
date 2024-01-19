@@ -3,7 +3,6 @@ import sound from "../../assets/sound/Extended F1 2018 theme by Brian Tyle.mp3";
 import style from "./Home.module.css";
 import Cards from "../Cards/Cards.jsx";
 import Filter from "../Filter/Filter.jsx";
-import axios from "axios";
 
 // function play() {
 //   const backgroundTheme = new Audio(sound);
@@ -31,6 +30,7 @@ const Home = () => {
         <Filter id="dob" options={["ASC", "DSC", "-"]} />
       </div>
       <Cards />
+      
     </div>
   );
 };

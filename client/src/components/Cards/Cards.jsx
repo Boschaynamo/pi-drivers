@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
 import style from "./Cards.module.css";
+import SeleccionPagina from "../SeleccionPagina/SeleccionPagina.jsx"
 import { getDrivers } from "../../redux/actions";
 const Cards = () => {
   // const [allDrivers,filter] = useSelector((state) => [state.drivers,state.filter]); gives a warning on console
   const allDrivers = useSelector((state) => state.drivers);
   const filter = useSelector((state) => state.filter);
-  const driversBeforeOrder = allDrivers.filter((driver) =>
-    driver.teams?.includes(filter.team)
-  );
+
+  const [paginaActual, setPaginaActual] = useState(0);
+
+  const driversBeforeOrder = allDrivers.filter((driver) => {
+    if (filter.team != "-") return driver.teams?.includes(filter.team);
+    else return true;
+  });
   let drivers;
   if (filter.order || filter.dob)
     drivers = driversBeforeOrder.sort((a, b) => {
@@ -25,19 +30,28 @@ const Cards = () => {
     });
   else drivers = driversBeforeOrder;
 
-  switch(filter.origin){
-    case 'API':
-      drivers = drivers.filter(driver=> !driver.hasOwnProperty('fromdatabase')
-);
+  switch (filter.origin) {
+    case "API":
+      drivers = drivers.filter(
+        (driver) => !driver.hasOwnProperty("fromdatabase")
+      );
       break;
-    case 'BD':
-      drivers = drivers.filter(driver=>driver.hasOwnProperty('fromdatabase'));
+    case "BD":
+      drivers = drivers.filter((driver) =>
+        driver.hasOwnProperty("fromdatabase")
+      );
       break;
     default:
       break;
   }
-    
 
+  const pageSize = 9;
+  const pages = [];
+
+  for (let i = 0; i < drivers.length; i += pageSize) {
+    const page = drivers.slice(i, i + pageSize);
+    pages.push(page);
+  }
 
   const dispatch = useDispatch();
 
@@ -53,7 +67,7 @@ const Cards = () => {
   //   }
   // };
 
-  const cards = drivers.map((driver) => (
+  const cards = pages[paginaActual]?.map((driver) => (
     <Card
       key={driver.id}
       name={driver.name.surname}
@@ -64,10 +78,14 @@ const Cards = () => {
 
   useEffect(() => {
     dispatch(getDrivers());
-    
   }, []);
 
-  return <div className={style.cardsContainer}>{cards}</div>;
+  return (
+    <div>
+      <div className={style.cardsContainer}>{cards}</div>
+      <SeleccionPagina cantidadPaginas={pages.length}/>
+    </div>
+  );
 };
 
 export default Cards;

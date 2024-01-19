@@ -74,7 +74,6 @@ module.exports = async (req, res) => {
         for(let i=0;i<driversFromDB.length;i++){
           driversFromDB[i].fromdatabase=true;
         }
-        console.log(driversFromDB);
         dataToSend = dataToSend.concat(driversFromDB);
       }
 
