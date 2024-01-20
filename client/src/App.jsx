@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Landing from "./components/Landing/Landing.jsx";
 import Home from "./components/Home/Home.jsx";
 import Nav from "./components/Nav/Nav.jsx";
+import Detail from "./components/Detail/Detail.jsx"
 import "./App.css";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </>
   );

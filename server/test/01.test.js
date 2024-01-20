@@ -44,6 +44,7 @@ const driversMock = [
 jest.mock("axios");
 
 describe("GET| /drivers", () => {
+  //Como agrega los drivers de la DB hace que tire error, tengo que ver como agregar al mock de la base de datos.
   it("should return data from the API", async () => {
     //mock axios.get
     axios.get.mockResolvedValueOnce({ data: driversMock });
