@@ -83,7 +83,7 @@ const Cards = () => {
   return (
     <div>
       <div className={style.cardsContainer}>{cards}</div>
-      <SeleccionPagina cantidadPaginas={pages.length}/>
+      <SeleccionPagina cantidadPaginas={pages.length} paginaActual={paginaActual} setPaginaActual={setPaginaActual}/>
     </div>
   );
 };
