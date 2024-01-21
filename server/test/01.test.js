@@ -1,5 +1,10 @@
 const axios = require("axios");
 const getDrivers = require("../src/controllers/getDrivers");
+
+const request = require("supertest");
+const server = require("../src/server");
+const { Team } = require("../src/db");
+
 //Mock data
 const driversMock = [
   {
@@ -43,70 +48,173 @@ const driversMock = [
 //Mock axios
 jest.mock("axios");
 
-describe("GET| /drivers", () => {
-  //Como agrega los drivers de la DB hace que tire error, tengo que ver como agregar al mock de la base de datos.
-  it("should return data from the API", async () => {
-    //mock axios.get
-    axios.get.mockResolvedValueOnce({ data: driversMock });
+// describe("GET| /drivers", () => {
+//   //Como agrega los drivers de la DB hace que tire error, tengo que ver como agregar al mock de la base de datos.
+//   it("should return data from the API", async () => {
+//     //mock axios.get
+//     axios.get.mockResolvedValueOnce({ data: driversMock });
 
-    const req = {};
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-    };
-    await getDrivers(req, res);
+//     const req = {};
+//     const res = {
+//       status: jest.fn().mockReturnThis(),
+//       json: jest.fn(),
+//     };
+//     await getDrivers(req, res);
 
-    //Expect response status to be 200
-    expect(res.status).toHaveBeenCalledWith(200);
+//     //Expect response status to be 200
+//     expect(res.status).toHaveBeenCalledWith(200);
 
-    //Expect the response to contain the data from the mocked API call
-    expect(res.json).toHaveBeenCalledWith(driversMock);
+//     //Expect the response to contain the data from the mocked API call
+//     expect(res.json).toHaveBeenCalledWith(driversMock);
+//   });
+
+//   it("should handle cases when the API call fails", async () => {
+//     // Mock the axios.get function to simulate a failed API call
+//     axios.get.mockRejectedValueOnce(new Error("API error"));
+
+//     const req = {};
+//     const res = {
+//       status: jest.fn().mockReturnThis(),
+//       json: jest.fn(),
+//     };
+
+//     await getDrivers(req, res);
+
+//     // Expect the response status to be 500 (or any other status code you prefer for errors)
+//     expect(res.status).toHaveBeenCalledWith(500);
+
+//     // Expect the response to contain an error message
+//     expect(res.json).toHaveBeenCalledWith({ error: "API error" });
+//   });
+
+//   it("should put a default image when empty", async () => {
+//     const updatedDrivers = driversMock.map((driver) => ({ ...driver }));
+//     // Remove the image.url property for the second driver to simulate an empty URL
+//     delete updatedDrivers[1].image.url;
+//     // axios.get.mockResolvedValueOnce({ data: driversMock });
+//     axios.get.mockResolvedValueOnce({ data: updatedDrivers });
+
+//     const req = {};
+//     const res = {
+//       status: jest.fn().mockReturnThis(),
+//       json: jest.fn(),
+//     };
+//     await getDrivers(req, res);
+
+//     //Expect response status to be 200
+//     expect(res.status).toHaveBeenCalledWith(200);
+
+//     const response = res.json.mock.calls[0][0];
+//     //Expect the response to contain the data from the mocked API call
+//     expect(
+//       response.every((item) => item.image && typeof item.image.url === 'string')
+//     ).toBe(true);
+//   });
+// });
+
+describe("Routes test", () => {
+  describe("GET| /drivers", () => {
+    it("should return drivers", async () => {
+      //mock axios.get
+      axios.get.mockResolvedValueOnce({ data: driversMock });
+      const response = await request(server).get("/drivers");
+
+      expect(response.statusCode).toEqual(200);
+      expect(response.body).toEqual(driversMock);
+    });
+    it("should handle cases when the API call fails", async () => {
+      // Mock the axios.get function to simulate a failed API call
+      axios.get.mockRejectedValueOnce(new Error("API error"));
+
+      const response = await request(server).get("/drivers");
+
+      // Expect the response status to be 500 (or any other status code you prefer for errors)
+      expect(response.statusCode).toEqual(500);
+
+      // Expect the response to contain an error message
+      expect(response.body).toEqual({ error: "API error" });
+    });
+
+    it("should put a default image when empty", async () => {
+      const updatedDrivers = driversMock.map((driver) => ({ ...driver }));
+      // Remove the image.url property for the second driver to simulate an empty URL
+      delete updatedDrivers[1].image.url;
+      // axios.get.mockResolvedValueOnce({ data: driversMock });
+      axios.get.mockResolvedValueOnce({ data: updatedDrivers });
+
+      const response = await request(server).get("/drivers");
+
+      //Expect response status to be 200
+      expect(response.statusCode).toEqual(200);
+
+      //Expect the response to contain the data from the mocked API call
+      expect(
+        response.body.every(
+          (item) => item.image && typeof item.image.url === "string"
+        )
+      ).toBe(true);
+    });
   });
+  describe("GET| /teams", () => {
+    it("should return an array of teams", async () => {
+      //mock axios.get
+      axios.get.mockResolvedValueOnce({ data: driversMock });
+      const response = await request(server).get("/teams");
 
-  it("should handle cases when the API call fails", async () => {
-    // Mock the axios.get function to simulate a failed API call
-    axios.get.mockRejectedValueOnce(new Error("API error"));
+      expect(response.statusCode).toEqual(200);
+      expect(response.body).toEqual([
+        "BMW Sauber",
+        "Jordan",
+        "McLaren",
+        "Mercedes",
+        "Prost",
+        "Renault",
+        "Sauber",
+        "Williams",
+      ]);
+    });
 
-    const req = {};
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-    };
+    it("should return an array of teams without duplicates", async () => {
+      //mock axios.get
+      const mockWithDuplicates = [...driversMock];
+      mockWithDuplicates[1].teams =
+        "Prost, Sauber, Jordan,Williams,BMW Sauber,Renault,Mercedes,Prost,Prost";
+      axios.get.mockResolvedValueOnce({ data: mockWithDuplicates });
+      const response = await request(server).get("/teams");
 
-    await getDrivers(req, res);
+      expect(response.statusCode).toEqual(200);
+      expect(response.body).toEqual([
+        "BMW Sauber",
+        "Jordan",
+        "McLaren",
+        "Mercedes",
+        "Prost",
+        "Renault",
+        "Sauber",
+        "Williams",
+      ]);
+    });
 
-    // Expect the response status to be 500 (or any other status code you prefer for errors)
-    expect(res.status).toHaveBeenCalledWith(500);
+    it("database should contain the array of teams", async () => {
+      //mock axios.get";
+      axios.get.mockResolvedValueOnce({ data: driversMock });
+      const response = await request(server).get("/teams");
 
-    // Expect the response to contain an error message
-    expect(res.json).toHaveBeenCalledWith({ error: "API error" });
-  });
+      const db_response = await Team.findAll();
+      const db_response_formatted = db_response
+        .map((team) => team.dataValues.nombre)
+        .sort();
 
-  it("should put a default image when empty", async () => {
-    const updatedDrivers = driversMock.map((driver) => ({ ...driver }));
-    // Remove the image.url property for the second driver to simulate an empty URL
-    delete updatedDrivers[1].image.url;
-    // axios.get.mockResolvedValueOnce({ data: driversMock });
-    axios.get.mockResolvedValueOnce({ data: updatedDrivers });
-
-    const req = {};
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-    };
-    await getDrivers(req, res);
-
-    //Expect response status to be 200
-    expect(res.status).toHaveBeenCalledWith(200);
-
-    const response = res.json.mock.calls[0][0];
-    //Expect the response to contain the data from the mocked API call
-    expect(
-      response.every((item) => item.image && typeof item.image.url === 'string')
-    ).toBe(true);
+      expect(db_response_formatted).toEqual([
+        "BMW Sauber",
+        "Jordan",
+        "McLaren",
+        "Mercedes",
+        "Prost",
+        "Renault",
+        "Sauber",
+        "Williams",
+      ]);
+    });
   });
 });
-
-describe("GET| /drivers/:idDriver", ()=>{
-
-})
