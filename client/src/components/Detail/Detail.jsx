@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import style from "./Detail.module.css";
+
 const Detail = () => {
   const { id } = useParams();
 
@@ -25,20 +27,45 @@ const Detail = () => {
   }, [id]);
 
   return (
-    <div>
-      <div>{id}</div>
-      {driver && (<>
-        <div>
-          <div>Nombre: {driver.name.forename}</div>
-          <div>Apellido: {driver.name.surname}</div>
-          <div>Nacionalidad: {driver.nationality}</div>
-          <div>Descripción: {driver.description}</div>
-          <div>Fecha: {driver.dob}</div>
-          <div>Escuderías: {driver.teams}</div>
-        </div>
-        <img src={driver.image.url} />
-        </>
-      )}
+    <div className={style.container}>
+      <div className={style.card}>
+        <div className={style.id}>#{id}</div>
+        {driver && (
+          <div className={style.inside}>
+            <div className={style.imgContainer}><img className={style.img} src={driver.image.url} /></div>
+            <div className={style.data}>
+              <div className={style.dataBox}>
+                <div className={style.dataBox_first}>Nombre:</div>
+                <div className={style.dataBox_second}>
+                  {driver.name.forename}
+                </div>
+              </div>
+              <div className={style.dataBox}>
+                <div className={style.dataBox_first}>Apellido:</div>
+                <div className={style.dataBox_second}>
+                  {driver.name.surname}
+                </div>
+              </div>
+              <div className={style.dataBox}>
+                <div className={style.dataBox_first}>Nacionalidad:</div>
+                <div className={style.dataBox_second}>{driver.nationality}</div>
+              </div>
+              <div className={style.dataBox}>
+                <div className={style.dataBox_first}>Descripción:</div>{" "}
+                <div className={style.dataBox_second}>{driver.description}</div>
+              </div>
+              <div className={style.dataBox}>
+                <div className={style.dataBox_first}>Nacimiento:</div>{" "}
+                <div className={style.dataBox_second}>{driver.dob}</div>
+              </div>
+              <div className={style.dataBox}>
+                <div className={style.dataBox_first}>Escuderías:</div>
+                <div className={style.dataBox_second}> {driver.teams}</div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

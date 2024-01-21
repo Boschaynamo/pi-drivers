@@ -38,16 +38,29 @@ export const getDriversByName = (name) => {
   const endpoint = "http://localhost:3001/drivers";
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(endpoint,{params:{name}});
+      const { data } = await axios.get(endpoint, { params: { name } });
       return dispatch({
-        type: 'SEARCH_BY_NAME',
+        type: "SEARCH_BY_NAME",
         payload: data,
       });
     } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const getAllTeams = () => {
+  const teamsEndpoint = "http://localhost:3001/teams";
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(teamsEndpoint);
+      console.log(data);
       return dispatch({
-        type: 'SEARCH_BY_NAME',
-        payload: err.response.data,
+        type: "GET_ALL_TEAMS",
+        payload: data,
       });
+    } catch (err) {
+      console.log(err);
     }
   };
 };

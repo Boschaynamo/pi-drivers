@@ -1,11 +1,25 @@
 .container{
-    background-color: var(--alternative-color);
+    background-color: var(--white-color);
     /* padding: 10px; */
-    height: 95vh;
+    height: 80vh;
+    width: 100vw;
 }
 
 
 .filtersContainer{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* margin:10px; */
+    width:100%;
+}
+
+.filtersContainer > span{
+    margin:20px 0 20px 0px;
+    /* margin-left: 30px; */
+}
+.filtersContainer > div{
+    /* margin: 20px 20px 20px 20px; */
+    margin-right:50px;
 }

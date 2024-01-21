@@ -4,6 +4,7 @@ const initialState = {
   drivers: [],
   allDrivers: [],
   filter: { team: "", origin: "API", order: "ASC", dob: null },
+  allTeams:['-']
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -37,6 +38,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         return { ...state, drivers: [] };
       }
       return { ...state, drivers: payload };
+    
+    case 'GET_ALL_TEAMS':
+      return{...state,allTeams:['-'].concat(payload)}
+    
+
     default:
       return { ...state };
   }

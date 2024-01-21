@@ -17,39 +17,51 @@ const SeleccionPagina = ({
     }
   };
 
-  for (let i = paginaActual; i < cantidadPaginas; i++) {
-    if (i < paginaActual + 20 && i < cantidadPaginas - 1)
-      numerosDePagina.push(
-        <button
-          onClick={handleClick}
-          className={style.button}
-          key={`button_${i}`}
-        >
-          {i + 1}
-        </button>
-      );
-    if (i === cantidadPaginas - 1) {
-      if (!(cantidadPaginas - 2 < paginaActual + 20))
-        numerosDePagina.push(
-          <span className={style.suspensivos} key={i - 1}>
-            ...
-          </span>
-        );
-      numerosDePagina.push(
-        <button onClick={handleClick} className={style.button} key={i}>
-          {i + 1}
-        </button>
-      );
-    }
+  for (let i = 0; i < cantidadPaginas; i++) {
+    numerosDePagina.push(
+      <button
+        onClick={handleClick}
+        className={paginaActual===i ? style.buttonActual : style.button}
+        key={`button_${i}`}
+      >
+        {i + 1}
+      </button>
+    );
   }
+  
+  // for (let i = paginaActual; i < cantidadPaginas; i++) {
+  //   if (i < paginaActual + 20 && i < cantidadPaginas - 1)
+  //     numerosDePagina.push(
+  //       <button
+  //         onClick={handleClick}
+  //         className={style.button}
+  //         key={`button_${i}`}
+  //       >
+  //         {i + 1}
+  //       </button>
+  //     );
+  //   if (i === cantidadPaginas - 1) {
+  //     if (!(cantidadPaginas - 2 < paginaActual + 20))
+  //       numerosDePagina.push(
+  //         <span className={style.suspensivos} key={i - 1}>
+  //           ...
+  //         </span>
+  //       );
+  //     numerosDePagina.push(
+  //       <button onClick={handleClick} className={style.button} key={i}>
+  //         {i + 1}
+  //       </button>
+  //     );
+  //   }
+  // }
 
   return (
-    <div>
+    <div className={style.SeleccionPaginaContainer}>
       {cantidadPaginas > 0 ? (
         <>
-          <button onClick={handleClick}>Back</button>
-          {numerosDePagina.map((pagina) => pagina)}
-          <button onClick={handleClick}>Next</button>
+          <button className={style.endButtons} onClick={handleClick}>Back</button>
+          {numerosDePagina}
+          <button className={style.endButtons} onClick={handleClick}>Next</button>
         </>
       ) : null}
     </div>

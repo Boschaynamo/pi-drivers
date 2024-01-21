@@ -6,7 +6,7 @@ module.exports = async () => {
     id: 2222,
     apellido: "Namardopolis",
     descripcion: "El mejor piloto de Formula 1 de la historia",
-    imagen: "defaultimagenbro",
+    imagen: "https://i.pinimg.com/originals/b7/d8/ba/b7d8baac47d0d519122bb2eb5648d663.jpg",
     nacionalidad: "Argentina",
     fechadenacimiento: "1998-01-20",
   });
@@ -15,7 +15,7 @@ module.exports = async () => {
     id: 2223,
     apellido: "Namardopolis2",
     descripcion: "El mejor piloto de Formula 1 de la historia2",
-    imagen: "defaultimagenbro2",
+    imagen: "https://i.pinimg.com/originals/b7/d8/ba/b7d8baac47d0d519122bb2eb5648d663.jpg",
     nacionalidad: "Argentina",
     fechadenacimiento: "1998-01-20",
   });

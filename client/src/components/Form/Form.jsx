@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import style from "./Form.module.css";
+
 import validation from "./validation";
 
 const Form = () => {
   const [driver, setDriver] = useState({
-    id:3,
     name: "PORTULACA",
     surname: "LACALMO",
     description: "SOyUnaDescripcion",
@@ -60,70 +61,86 @@ const Form = () => {
     });
   }, []);
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Nombre</label>
-        <input name="name" value={driver.name} onChange={handleChange}></input>
-        <p style={{ color: "red" }}>{errors.name}</p>
-        <label>Apellido</label>
-        <input
-          name="surname"
-          value={driver.surname}
-          onChange={handleChange}
-        ></input>
-        <p style={{ color: "red" }}>{errors.surname}</p>
-        <label>Descripcion</label>
-        <input
-          name="description"
-          value={driver.description}
-          onChange={handleChange}
-        ></input>
+    <div className={style.container}>
+      <form className={style.form} onSubmit={handleSubmit}>
 
-        <label>Imagen url</label>
-        <input
-          name="image"
-          value={driver.image}
-          onChange={handleChange}
-        ></input>
+          <div className={style.labelinputContainer}>
+            <label>Nombre</label>
+            <input
+              name="name"
+              value={driver.name}
+              onChange={handleChange}
+            ></input>
+            <p>{errors.name}</p>
+          </div>
 
-        <label>Nacionalidad</label>
-        <input
-          name="nationality"
-          value={driver.nationality}
-          onChange={handleChange}
-        ></input>
-
-        <label>Fecha de nacimiento</label>
-        <input
-          name="dob"
-          value={driver.dob}
-          onChange={handleChange}
-          placeholder="YYYY-MM-DD"
-        ></input>
-        <p style={{ color: "red" }}>{errors.dob}</p>
-
-        <label>Escuderias</label>
-        <div>
-          {driver.teams.map((team) => (
-            <span key={`teamCard_${team}`} onClick={handleTeamClick}>
-              {team}
-            </span>
-          ))}
+          <div className={style.labelinputContainer}>
+            <label>Apellido</label>
+            <input
+              name="surname"
+              value={driver.surname}
+              onChange={handleChange}
+            ></input>
+            <p>{errors.surname}</p>
         </div>
-        <select
-          defaultValue="Seleccione la escuderia que quiere agregar"
-          onChange={handleTeamChange}
-        >
-          <option value="default">
-            Seleccione la escuderia que quiere agregar
-          </option>
+        <div className={style.labelinputContainer}>
+          <label>Descripcion</label>
+          <input
+            name="description"
+            value={driver.description}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div className={style.labelinputContainer}>
+          <label>Imagen url</label>
+          <input
+            name="image"
+            value={driver.image}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div className={style.labelinputContainer}>
+          <label>Nacionalidad</label>
+          <input
+            name="nationality"
+            value={driver.nationality}
+            onChange={handleChange}
+          ></input>
+        </div>
+          <div className={style.labelinputContainer}>
+            <label>Fecha de nacimiento</label>
+            <input
+              name="dob"
+              value={driver.dob}
+              onChange={handleChange}
+              placeholder="YYYY-MM-DD"
+            ></input>
+            <p>{errors.dob}</p>
+          </div>
+          <div className={style.labelinputContainer}>
+            <label>Escuderias</label>
+            <select
+              defaultValue="Seleccione la escuderia que quiere agregar"
+              onChange={handleTeamChange}
+            >
+              <option value="default">
+                Seleccione la escuderia que quiere agregar
+              </option>
 
-          {allTeams.map((team) => (
-            <option key={team} value={team}>
-              {team}
-            </option>
-          ))}
-        </select>
+              {allTeams.map((team) => (
+                <option key={team} value={team}>
+                  {team}
+                </option>
+              ))}
+            </select>
+            <span>
+              {driver.teams.map((team) => (
+                <span className={style.teamCard} key={`teamCard_${team}`} onClick={handleTeamClick}>
+                  {team}
+                </span>
+              ))}
+            </span>
+          </div>
 
         <button type="submit">Submit</button>
       </form>

@@ -3,8 +3,9 @@ body{
 }
 
 :root{
-    --primary-color:#A6051A;
-    --secondary-color:#FFEB00;
-    --alternative-color:#f4f4f4;
+    --primary-color:#EF1A2D;
+    --secondary-color:#FFF200;
+    --alternative-color:#00A551;
     --dark-color:#111111;
+    --white-color:#FFFFFF;
 }

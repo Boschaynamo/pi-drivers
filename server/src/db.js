@@ -40,6 +40,13 @@ const { Driver, Team } = sequelize.models;
 // Product.hasMany(Reviews);
 Driver.belongsToMany(Team, { through: "Driver_Team" });
 Team.belongsToMany(Driver, { through: "Driver_Team" });
+// set the starting value for id
+Driver.beforeCreate((driver) => {
+  return Driver.max("id").then((maxId) => {
+    // If there are no records yet, set the id to 10
+    driver.id = maxId ? maxId + 1 : 1000;
+  });
+});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

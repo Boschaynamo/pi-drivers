@@ -7,7 +7,7 @@ const testTable = require("./src/testTable")
 conn.sync({ force: true }).then(() => {
 server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
-  testTable();
+  // testTable();
 
 
 })

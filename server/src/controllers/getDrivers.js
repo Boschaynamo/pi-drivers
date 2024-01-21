@@ -81,7 +81,7 @@ module.exports = async (req, res) => {
 
     //checkeo que todos los drivers tengan foto sino cargo por default.
     for (let i = 0; i < dataToSend.length; i++) {
-      if (!dataToSend[i].image.hasOwnProperty("url")) {
+      if (!dataToSend[i].image.hasOwnProperty("url") || dataToSend[i].image.url.length<2) {
         dataToSend[i].image.url = process.env.DEFAULT_DRIVER_IMAGE;
       }
     }
