@@ -1,6 +1,7 @@
 .container{
-    background-color: red;
-    padding: 10px;
+    background-color: var(--alternative-color);
+    /* padding: 10px; */
+    height: 95vh;
 }
 
 

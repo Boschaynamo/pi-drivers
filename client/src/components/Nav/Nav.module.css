@@ -1,16 +1,33 @@
 .container{
     width: 100%;
-    background-color: blue;
+    height: 5vh;
+    background-color: var(--primary-color);
     display:flex;
-    justify-content: end;
-    padding:10px;
-    border: 2px;
-    gap: 25px;
-    
+    /* padding:10px; */
+    /* border: 2px;
+    gap: 25px; */
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 0 0 10px 10px;
     
 }
 
 /* .container > div{
-    margin: 5px;
-} */
+}  */
 
+.botoncitos{
+    padding: 5px;
+    margin: 10px;
+    height: 20px;
+    background: var(--alternative-color);
+    display: flex; 
+    justify-content: center;
+    align-items:center;
+    border-radius: 5px;
+
+    text-decoration: none;
+    color: var(--dark-color);
+    
+    
+}

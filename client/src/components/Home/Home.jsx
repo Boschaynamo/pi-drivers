@@ -11,14 +11,13 @@ import Filter from "../Filter/Filter.jsx";
 // }
 
 const Home = () => {
-  const teams=['-','Mercedes','Ferrari']
-  
+  const teams = ["-", "Mercedes", "Ferrari"];
+
   const backgroundTheme = new Audio(sound);
   backgroundTheme.volume = 0.15;
 
   useEffect(() => {
     if (backgroundTheme.paused) backgroundTheme.play();
-    
   }, []);
 
   return (
@@ -30,7 +29,6 @@ const Home = () => {
         <Filter id="dob" options={["ASC", "DSC", "-"]} />
       </div>
       <Cards />
-      
     </div>
   );
 };

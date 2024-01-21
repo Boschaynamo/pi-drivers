@@ -1,0 +1,10 @@
+body{
+    margin:0;
+}
+
+:root{
+    --primary-color:#A6051A;
+    --secondary-color:#FFEB00;
+    --alternative-color:#f4f4f4;
+    --dark-color:#111111;
+}

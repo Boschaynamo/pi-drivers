@@ -1,14 +1,24 @@
-import style from './Card.module.css'
+import { NavLink } from "react-router-dom";
+import style from "./Card.module.css";
 
-const Card = ({ name, teams, image }) => {
+const Card = ({ id, name, teams, image }) => {
   return (
-    <div className={style.cardContainer}>
-      <div>{name}</div>
-      <img className={style.image} src={image} alt={`Image of ${name}`} />
-      <ul>
-        <li>{teams}</li>
-      </ul>
-    </div>
+    <NavLink className={style.cardContainer} to={`/detail/${id}`}>
+      <div className={style.left}>
+        <div className={style.name}>
+          <div>
+            {name.forename} {name.surname}{" "}
+          </div>
+        </div>
+        <div className={style.teams}>
+          <div>Escuderias: </div>
+          <span>{teams}</span>
+        </div>
+      </div>
+      <div className={style.right}>
+        <img className={style.image} src={image} alt={`Image of ${name}`} />
+      </div>
+    </NavLink>
   );
 };
 

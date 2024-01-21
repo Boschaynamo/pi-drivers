@@ -70,7 +70,8 @@ const Cards = () => {
   const cards = pages[paginaActual]?.map((driver) => (
     <Card
       key={driver.id}
-      name={driver.name.surname}
+      id={driver.id}
+      name={driver.name}
       teams={driver.teams}
       image={driver.image.url}
     />
@@ -81,7 +82,7 @@ const Cards = () => {
   }, []);
 
   return (
-    <div>
+    <div className={style.cardsComponentContainer}>
       <div className={style.cardsContainer}>{cards}</div>
       <SeleccionPagina cantidadPaginas={pages.length} paginaActual={paginaActual} setPaginaActual={setPaginaActual}/>
     </div>
