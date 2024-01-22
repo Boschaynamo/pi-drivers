@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define(
+  const Driver = sequelize.define(
     "Driver",
     {
       name: {
@@ -35,11 +35,8 @@ module.exports = (sequelize) => {
         type: DataTypes.DATE,
         allowNull: false,
       },
-    },
-    {
-      initialAutoIncrement: 50,
     }
   );
 
-
+    return Driver
 };
