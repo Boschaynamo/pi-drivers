@@ -52,6 +52,8 @@ const Cards = () => {
     const page = drivers.slice(i, i + pageSize);
     pages.push(page);
   }
+ if(pages.length < paginaActual)
+  setPaginaActual(0);
 
   const dispatch = useDispatch();
 
