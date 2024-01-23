@@ -1,18 +1,24 @@
-.cardsComponentContainer{
-    height: 100%;
-    margin: 10px;
+.cardsComponentContainer {
+  height: 100%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.cardsComponentContainer_1box{
+    /* height: 50%; */
 }
 
-.cardsContainer{
-    /* display:flex;
+.cardsContainer {
+  /* display:flex;
     flex-wrap: wrap;
     justify-content: center;
     row-gap: 20px;
     column-gap: 50px; */
-    margin: 0px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    height: 100%;
-    width: 100%;
+  margin: 0px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+
 }

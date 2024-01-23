@@ -26,6 +26,7 @@
 }
 
 .SeleccionPaginaContainer {
+  height:30%;
   display: flex;
   /* width: 00px; */
   justify-content: center;

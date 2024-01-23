@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       fechadenacimiento: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
     }

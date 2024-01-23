@@ -39,12 +39,14 @@ function App() {
   return (
     <>
       {location.pathname !== "/" ? <Nav /> : null}
+      <div className="content">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/form" element={<Form />}/>
       </Routes>
+      </div>
     </>
   );
 }

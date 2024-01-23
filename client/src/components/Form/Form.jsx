@@ -19,12 +19,17 @@ const Form = () => {
   const [allTeams, setAllTeams] = useState([]);
 
   const [errors, setErrors] = useState({});
+  const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const handleChange = (event) => {
     setDriver({ ...driver, [event.target.name]: event.target.value });
-    setErrors(
-      validation({ ...driver, [event.target.name]: event.target.value })
-    );
+    const validationResult = validation({
+      ...driver,
+      [event.target.name]: event.target.value,
+    });
+    setErrors(validationResult);
+    if (!Object.keys(validationResult).length) setButtonDisabled(false);
+    else setButtonDisabled(true);
   };
 
   const handleSubmit = (event) => {
@@ -63,25 +68,24 @@ const Form = () => {
   return (
     <div className={style.container}>
       <form className={style.form} onSubmit={handleSubmit}>
+        <div className={style.labelinputContainer}>
+          <label>Nombre</label>
+          <input
+            name="name"
+            value={driver.name}
+            onChange={handleChange}
+          ></input>
+          <p>{errors.name}</p>
+        </div>
 
-          <div className={style.labelinputContainer}>
-            <label>Nombre</label>
-            <input
-              name="name"
-              value={driver.name}
-              onChange={handleChange}
-            ></input>
-            <p>{errors.name}</p>
-          </div>
-
-          <div className={style.labelinputContainer}>
-            <label>Apellido</label>
-            <input
-              name="surname"
-              value={driver.surname}
-              onChange={handleChange}
-            ></input>
-            <p>{errors.surname}</p>
+        <div className={style.labelinputContainer}>
+          <label>Apellido</label>
+          <input
+            name="surname"
+            value={driver.surname}
+            onChange={handleChange}
+          ></input>
+          <p>{errors.surname}</p>
         </div>
         <div className={style.labelinputContainer}>
           <label>Descripcion</label>
@@ -107,42 +111,48 @@ const Form = () => {
             onChange={handleChange}
           ></input>
         </div>
-          <div className={style.labelinputContainer}>
-            <label>Fecha de nacimiento</label>
-            <input
-              name="dob"
-              value={driver.dob}
-              onChange={handleChange}
-              placeholder="YYYY-MM-DD"
-            ></input>
-            <p>{errors.dob}</p>
-          </div>
-          <div className={style.labelinputContainer}>
-            <label>Escuderias</label>
-            <select
-              defaultValue="Seleccione la escuderia que quiere agregar"
-              onChange={handleTeamChange}
-            >
-              <option value="default">
-                Seleccione la escuderia que quiere agregar
+        <div className={style.labelinputContainer}>
+          <label>Fecha de nacimiento</label>
+          <input
+            name="dob"
+            value={driver.dob}
+            onChange={handleChange}
+            placeholder="YYYY-MM-DD"
+          ></input>
+          <p>{errors.dob}</p>
+        </div>
+        <div className={style.labelinputContainer}>
+          <label>Escuderias</label>
+          <select
+            defaultValue="Seleccione la escuderia que quiere agregar"
+            onChange={handleTeamChange}
+          >
+            <option value="default">
+              Seleccione la escuderia que quiere agregar
+            </option>
+
+            {allTeams.map((team) => (
+              <option key={team} value={team}>
+                {team}
               </option>
+            ))}
+          </select>
+          <span>
+            {driver.teams.map((team) => (
+              <span
+                className={style.teamCard}
+                key={`teamCard_${team}`}
+                onClick={handleTeamClick}
+              >
+                {team}
+              </span>
+            ))}
+          </span>
+        </div>
 
-              {allTeams.map((team) => (
-                <option key={team} value={team}>
-                  {team}
-                </option>
-              ))}
-            </select>
-            <span>
-              {driver.teams.map((team) => (
-                <span className={style.teamCard} key={`teamCard_${team}`} onClick={handleTeamClick}>
-                  {team}
-                </span>
-              ))}
-            </span>
-          </div>
-
-        <button type="submit">Submit</button>
+        <button disabled={buttonDisabled} type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
