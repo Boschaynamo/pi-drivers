@@ -1,6 +1,6 @@
 .cardsComponentContainer {
   height: 100%;
-  margin: 10px;
+  /* margin: 10px; */
   display: flex;
   flex-direction: column;
 }

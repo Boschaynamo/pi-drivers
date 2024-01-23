@@ -57,7 +57,6 @@ export const getAllTeams = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(teamsEndpoint);
-      console.log(data);
       return dispatch({
         type: "GET_ALL_TEAMS",
         payload: data,
