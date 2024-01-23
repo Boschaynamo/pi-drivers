@@ -279,7 +279,7 @@ describe("Database test", () => {
       expect(driver.descripcion).toBe(mockDriver.descripcion);
       expect(driver.imagen).toBe(mockDriver.imagen);
       expect(driver.nacionalidad).toBe(mockDriver.nacionalidad);
-      expect(driver.fechadenacimiento.toISOString().split("T")[0]).toBe(mockDriver.fechadenacimiento);
+      expect(driver.fechadenacimiento).toBe(mockDriver.fechadenacimiento);
       // Add other assertions for properties as needed
       
       // Additional assertions if needed
@@ -288,7 +288,7 @@ describe("Database test", () => {
       expect(fetchedDriver.descripcion).toBe(mockDriver.descripcion);
       expect(fetchedDriver.imagen).toBe(mockDriver.imagen);
       expect(fetchedDriver.nacionalidad).toBe(mockDriver.nacionalidad);
-      expect(fetchedDriver.fechadenacimiento.toISOString().split("T")[0]).toBe(mockDriver.fechadenacimiento);
+      expect(fetchedDriver.fechadenacimiento).toBe(mockDriver.fechadenacimiento);
       // Add other assertions for properties as needed
     });
   });
