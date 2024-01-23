@@ -224,11 +224,11 @@ const createDriverModel = require("../src/models/Driver");
 
 const mockDriver = {
   id: 5,
-  name: "PORTULACA",
-  apellido: "LACALMO",
-  descripcion: "SOyUnaDescripcion",
-  imagen: "defaultuirl",
-  nacionalidad: "Basingseano",
+  name: "Manuelita",
+  apellido: "ViviaEn",
+  descripcion: "Pehuajo",
+  imagen: "PeroUnDia",
+  nacionalidad: "SeMarcho",
   fechadenacimiento: "1998-01-05",
 };
 

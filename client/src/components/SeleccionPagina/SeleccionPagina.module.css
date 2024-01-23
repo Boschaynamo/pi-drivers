@@ -1,3 +1,9 @@
+.botonesContainer{
+  display:flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
 .button {
   margin: 3px;
   padding: 0px;
@@ -26,7 +32,8 @@
 }
 
 .SeleccionPaginaContainer {
-  height:30%;
+  /* height:30%; */
+  /* width: auto; */
   display: flex;
   /* width: 00px; */
   justify-content: center;

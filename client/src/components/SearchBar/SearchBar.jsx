@@ -17,7 +17,7 @@ const SearchBar = () => {
     }
 
     return <div className={style.container}>
-      <input type='search' onChange={handleChange} value={searchText}></input>
+      <input type='search' onChange={handleChange} value={searchText} placeholder="Busqueda por apellido"></input>
       <button onClick={handleClick}>Buscar</button>
       </div>;
   };

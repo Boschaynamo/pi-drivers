@@ -58,11 +58,13 @@ const SeleccionPagina = ({
   return (
     <div className={style.SeleccionPaginaContainer}>
       {cantidadPaginas > 0 ? (
-        <>
+        <div className={style.botonesContainer}>
           <button className={style.endButtons} onClick={handleClick}>Back</button>
+          <div>
           {numerosDePagina}
+          </div>
           <button className={style.endButtons} onClick={handleClick}>Next</button>
-        </>
+        </div>
       ) : null}
     </div>
   );

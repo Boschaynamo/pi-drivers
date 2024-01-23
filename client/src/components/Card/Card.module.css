@@ -1,10 +1,11 @@
-
 .cardContainer {
   /* background-color: aquamarine; */
   margin: 10px;
   border: 2px solid var(--dark-color);
-  flex: 0 32%;
+  flex: auto 32%;
   height: 200px;
+  min-width: 300px;
+  max-width: 400px;
   /* margin-bottom: 2%; */
   text-decoration: none;
 
@@ -17,8 +18,8 @@
   background: var(--dark-color);
 }
 
-.cardContainer:hover{
-  scale:1.05;
+.cardContainer:hover {
+  scale: 1.05;
 }
 
 .image {
@@ -35,7 +36,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 25px 0  0 25px;
+  border-radius: 25px 0 0 25px;
 }
 
 .right {
@@ -43,19 +44,18 @@
   width: 40%;
 }
 
-.name{
-    height: 25%;
-    display: flex;
-    flex-direction: row;
-    color:var(--white-color);
-    border-bottom: 2px solid var(--dark-color);
-    text-align: center;
-    
+.name {
+  height: 25%;
+  display: flex;
+  flex-direction: row;
+  color: var(--white-color);
+  border-bottom: 2px solid var(--dark-color);
+  text-align: center;
 }
-.name>div{
-    width:100%;
-    align-self:center;
-    margin:10px;
+.name > div {
+  width: 100%;
+  align-self: center;
+  margin: 10px;
 }
 /* .name >span{
     width:75%;
@@ -65,21 +65,20 @@
     border-radius: 25px;
     
 } */
-.teams{
-    height:75%;
-    /* background: aqua; */
-    display: flex;
-    align-items: center;
-    border-radius: 0 0 0 25px;
-    color:var(--white-color);
+.teams {
+  height: 75%;
+  /* background: aqua; */
+  display: flex;
+  align-items: center;
+  border-radius: 0 0 0 25px;
+  color: var(--white-color);
 }
-.teams >div{
-    width:35%;
-    margin:10px;
-    
+.teams > div {
+  width: 35%;
+  margin: 10px;
 }
 
-.teams >span{
-    width:75%;
-    margin:10px;
+.teams > span {
+  width: 75%;
+  margin: 10px;
 }
