@@ -44,7 +44,10 @@ export const getDriversByName = (name) => {
         payload: data,
       });
     } catch (err) {
-      console.log(err);
+      return dispatch({
+        type: "SEARCH_BY_NAME",
+        payload: err.response.data.error,
+      });
     }
   };
 };

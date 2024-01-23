@@ -4,7 +4,7 @@ const initialState = {
   drivers: [],
   allDrivers: [],
   filter: { team: "", origin: "API", order: "ASC", dob: null },
-  allTeams:['-']
+  allTeams: ["-"],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -26,22 +26,20 @@ const rootReducer = (state = initialState, { type, payload }) => {
         obj.filter.dob = state.filter.dob;
       }
 
-      
       if (payload.who === "team" && payload.data === "-") {
         obj.drivers = state.allDrivers;
       }
       return obj;
 
     case "SEARCH_BY_NAME":
-      if (payload.error === "No driver found") {
+      if (payload === "No driver found") {
         // window.alert('No driver found');
         return { ...state, drivers: [] };
       }
       return { ...state, drivers: payload };
-    
-    case 'GET_ALL_TEAMS':
-      return{...state,allTeams:['-'].concat(payload)}
-    
+
+    case "GET_ALL_TEAMS":
+      return { ...state, allTeams: ["-"].concat(payload) };
 
     default:
       return { ...state };
