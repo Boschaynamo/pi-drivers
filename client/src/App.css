@@ -9,8 +9,8 @@
 }
 
 .content{
-  background: linear-gradient(180deg, rgb(95, 108, 194) 11.4%, rgb(11, 15, 31) 70.2%);
-  height: 95vh;
+  background: linear-gradient(180deg, rgb(95, 108, 194) 11.4%, rgb(18, 23, 42) 60%);
+  height: 100vh;
   display:flex;
 justify-content: center;
 /* align-content: center; */
