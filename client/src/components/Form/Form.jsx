@@ -69,26 +69,26 @@ const Form = () => {
     <div className={style.container}>
       <form className={style.form} onSubmit={handleSubmit}>
         <div className={style.labelinputContainer}>
-          <label>Nombre</label>
+          <label>Nombre:</label>
           <input
             name="name"
             value={driver.name}
             onChange={handleChange}
           ></input>
-          <p>{errors.name}</p>
+          <div>{errors.name}</div>
         </div>
 
         <div className={style.labelinputContainer}>
-          <label>Apellido</label>
+          <label>Apellido:</label>
           <input
             name="surname"
             value={driver.surname}
             onChange={handleChange}
           ></input>
-          <p>{errors.surname}</p>
+          <div>{errors.surname}</div>
         </div>
         <div className={style.labelinputContainer}>
-          <label>Descripcion</label>
+          <label>Descripcion:</label>
           <input
             name="description"
             value={driver.description}
@@ -96,7 +96,7 @@ const Form = () => {
           ></input>
         </div>
         <div className={style.labelinputContainer}>
-          <label>Imagen url</label>
+          <label>Imagen url:</label>
           <input
             name="image"
             value={driver.image}
@@ -104,7 +104,7 @@ const Form = () => {
           ></input>
         </div>
         <div className={style.labelinputContainer}>
-          <label>Nacionalidad</label>
+          <label>Nacionalidad:</label>
           <input
             name="nationality"
             value={driver.nationality}
@@ -112,17 +112,17 @@ const Form = () => {
           ></input>
         </div>
         <div className={style.labelinputContainer}>
-          <label>Fecha de nacimiento</label>
+          <label>Fecha de nacimiento:</label>
           <input
             name="dob"
             value={driver.dob}
             onChange={handleChange}
             placeholder="YYYY-MM-DD"
           ></input>
-          <p>{errors.dob}</p>
+          <div>{errors.dob}</div>
         </div>
         <div className={style.labelinputContainer}>
-          <label>Escuderias</label>
+          <label>Escuderias:</label>
           <select
             defaultValue="Seleccione la escuderia que quiere agregar"
             onChange={handleTeamChange}
@@ -150,7 +150,11 @@ const Form = () => {
           </span>
         </div>
 
-        <button disabled={buttonDisabled} type="submit">
+        <button
+          className={buttonDisabled ? style.buttonDisabled : style.buttonEnabled}
+          disabled={buttonDisabled}
+          type="submit"
+        >
           Submit
         </button>
       </form>
