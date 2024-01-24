@@ -16,6 +16,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, drivers: payload, allDrivers: payload };
 
     case TEAM_ORIGIN_ORDER_FILTER:
+      {
       const obj = {
         ...state,
         filter: { ...state.filter, order: null, dob: null },
@@ -30,6 +31,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         obj.drivers = state.allDrivers;
       }
       return obj;
+    }
 
     case "SEARCH_BY_NAME":
       if (payload === "No driver found") {

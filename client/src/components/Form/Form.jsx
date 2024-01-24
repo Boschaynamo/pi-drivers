@@ -7,12 +7,12 @@ import validation from "./validation";
 
 const Form = () => {
   const [driver, setDriver] = useState({
-    name: "PORTULACA",
-    surname: "LACALMO",
-    description: "SOyUnaDescripcion",
-    image: "defaultuirl",
-    nationality: "Basingseano",
-    dob: "1998-01-05",
+    name: "",
+    surname: "",
+    description: "",
+    image: "",
+    nationality: "",
+    dob: "",
     teams: [],
   });
 
