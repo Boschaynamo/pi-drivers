@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --setupFiles dotenv/config --detectOpenHandles",
+    "test:01": "jest 01.test.js --setupFiles dotenv/config --detectOpenHandles",
+    "test:02": "jest 02.test.js --setupFiles dotenv/config",
     "server": "nodemon index.js",
     "api": "echo 'Local API listening on PORT 5000' & json-server --watch api/db.json -p 5000 -q",
     "start": "concurrently \"npm run server\" \"npm run api\""
